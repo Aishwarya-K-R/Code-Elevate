@@ -1,0 +1,52 @@
+# Flutter & Dart
+.dart_tool/
+.packages
+.pub/
+build/
+flutter_*.png
+
+# IDE settings
+.idea/
+.vscode/
+*.iml
+
+# Android
+android/.gradle/
+android/.idea/
+android/local.properties
+gradlew
+gradlew.bat
+gradle/
+*.apk
+
+# iOS
+ios/Pods/
+ios/.symlinks/
+ios/Flutter/App.framework
+ios/Flutter/Flutter.podspec
+ios/.generated/
+
+# macOS
+macos/Flutter/Flutter-Debug.xcconfig
+macos/Flutter/Flutter-Release.xcconfig
+macos/Flutter/GeneratedPluginRegistrant.swift
+
+# Web
+web/.dart_tool/
+web/.firebase/
+web/.flutter-plugins
+web/.flutter-plugins-dependencies
+
+# Linux
+linux/flutter/
+linux/.generated/
+
+# Windows
+windows/flutter/
+windows/.generated/
+
+# Misc
+.DS_Store
+*.log
+*.tmp
+*.bak
