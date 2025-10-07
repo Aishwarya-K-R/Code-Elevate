@@ -5,6 +5,8 @@ An app that allows the users to convert the currencies from Rupee to Dollar, pro
 Tools and Technologies Used:
 1. Language - Dart
 2. Framework - Flutter
+3. IDE - Visual Studio Code
+4. Simulator - Android/iOS Emulator or Physical Device
 
 Steps for Implementation :
 1. Clone or download the project from the repository.
