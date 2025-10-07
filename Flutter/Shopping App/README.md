@@ -9,7 +9,7 @@ Functionalities Implemented :
 4. Interactive UI elements like buttons, tabs, and navigation drawers.
 5. Responsive design for different screen sizes.
 
-Tools and Technologies Used:
+Tools and Technologies Used :
 1. Language - Dart
 2. Framework - Flutter
 3. IDE - Visual Studio Code
