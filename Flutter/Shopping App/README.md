@@ -1,16 +1,22 @@
-# shopping_app
+************************* Shopping App *************************
 
-A new Flutter project.
+A shopping app with an interactive frontend, demonstrating state management, UI responsiveness, and dynamic product interactions.
 
-## Getting Started
+Functionalities Implemented :
+1. Display of product listings with images, names, and prices.
+2. Add or remove products from a shopping cart dynamically.
+3. State management implemented.
+4. Interactive UI elements like buttons, tabs, and navigation drawers.
+5. Responsive design for different screen sizes.
 
-This project is a starting point for a Flutter application.
+Tools and Technologies Used:
+1. Language - Dart
+2. Framework - Flutter
+3. IDE - Visual Studio Code
+4. Simulator - Android Emulator
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Steps for Implementation :
+1. Clone or download the project from the repository.
+2. Ensure Flutter SDK is installed on your system.
+3. Run 'flutter pub get' to fetch dependencies.
+4. Run the app using 'flutter' run in an IDE (VS Code, Android Studio, etc.) or on an emulator/device.
