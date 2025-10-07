@@ -1,16 +1,15 @@
-# currency_converter
+************************* Currency Converter App *************************
 
-A new Flutter project.
+An app that allows the users to convert the currencies from Rupee to Dollar, providing a simple and intuitive interface.
 
-## Getting Started
+Tools and Technologies Used:
+1. Language - Dart
+2. Framework - Flutter
 
-This project is a starting point for a Flutter application.
+Steps for Implementation :
+1. Clone or download the project from the repository.
+2. Ensure Flutter SDK is installed on your system.
+3. Run 'flutter pub get' to fetch dependencies.
+4. Run the app using 'flutter' run in an IDE (VS Code, Android Studio, etc.) or on an emulator/device.
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
