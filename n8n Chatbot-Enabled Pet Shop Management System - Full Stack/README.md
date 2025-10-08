@@ -6,6 +6,7 @@ Functionalities Implemented :
 This application provides role-specific features :
 1. Admin has access to the following operations :
   a. Login
+
   b. View and update profile
   c. View users list
   d. View orders history
@@ -13,7 +14,7 @@ This application provides role-specific features :
   f. View, update, and delete products
   g. Access to ChatBot 
   h. Logout
-2. User has access to the following operations :
+3. User has access to the following operations :
   a. Signup
   b. Login
   c. View and update profile
