@@ -6,7 +6,6 @@ Functionalities Implemented :
 This application provides role-specific features :
 1. Admin has access to the following operations :
   a. Login
-
   b. View and update profile
   c. View users list
   d. View orders history
