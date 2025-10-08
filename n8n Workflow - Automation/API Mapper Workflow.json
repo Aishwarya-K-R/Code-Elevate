@@ -1,0 +1,174 @@
+{
+  "name": "API Mapper Workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "pet-assistant",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "bc604a27-d535-45b5-a7d3-41e7633ab721",
+      "name": "Webhook",
+      "webhookId": "3ae6bed8-76cd-433b-8946-0df6effce539"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "c057f8fa-8782-4f47-8c68-3d07d083ec34",
+              "name": "question",
+              "value": "={{$json[\"body\"][\"question\"]}}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        208,
+        0
+      ],
+      "id": "2ae9396a-4a1d-4288-b870-b8f34879be25",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.groq.com/openai/v1/chat/completions",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "Authorization",
+              "value": "Bearer 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"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "application/json",
+        "body": "={ \"model\": \"openai/gpt-oss-20b\", \"messages\": [ { \"role\": \"system\", \"content\": \"You are an API router AI.\\nBelow is the list of APIs available:\\n\\nUser APIs:\\n1. /user/{user_id} → Get user details. Parameters: user_id\\n2. /categories → Get list of categories. Parameters: none\\n3. /products/category?category= → Get products in a category. Parameters: category\\n4. /user/{user_id}/cart → Get cart of a user. Parameters: user_id\\n5. /user/orders/{user_id} → Get orders of a user. Parameters: user_id\\n6. /generalKnowledge → Answer general knowledge questions. Parameters: question\\n\\nAdmin APIs (role-based access is already handled in code, so just return the correct API):\\n7. /admin/orders → View all orders. Parameters: none\\n8. /admin/users → View all users. Parameters: none\\n\\nInstructions:\\n1. Correct typos in the user's question (e.g., 'fod' → 'food', 'groming' → 'grooming').\\n2. Based on the corrected question, select the most suitable API.\\n3. If the user wants to view all products, set category=null.\\n4. If the question contains 'my', then return the api as it is with the query parameter user_id as null otherwise set the user_id and return the same in the response. This instruction is only applicable for the api requiring user_id.\\n5. Respond only in valid JSON format:\\n{\\n \\\"api\\\": \\\"/api-name\\\",\\n \\\"parameters\\\": { \\\"param1\\\": \\\"value\\\", \\\"param2\\\": \\\"value\\\" }\\n}\\nIf it’s a general knowledge question, return api as \\\"/generalKnowledge\\\" and include the full \\\"question\\\" as parameter.\" }, { \"role\": \"user\", \"content\": \"{{$json['question']}}\" } ], \"temperature\": 0, \"max_tokens\": 500 }",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        416,
+        0
+      ],
+      "id": "a9287d6e-772a-4097-a83b-644d9afbfe4b",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "e18dff22-54a7-4644-a6f4-ac40089152b4",
+              "name": "reply",
+              "value": "={{ JSON.parse($json[\"choices\"][0][\"message\"][\"content\"]) }}",
+              "type": "object"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        624,
+        0
+      ],
+      "id": "6ef22d6b-3000-4e5c-8672-fdecf98bc007",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "options": {
+          "responseCode": 200,
+          "responseKey": ""
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        832,
+        0
+      ],
+      "id": "284013cb-b339-4f2a-863a-496c7e4b31fa",
+      "name": "Respond to Webhook"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "0458b24b-953f-4063-b9c9-6775427ab8a1",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "cd34ff30b64d2b8b9bb9358dc164b06eb2ca3d644725cb11cc462e72ff30af0e"
+  },
+  "id": "eGn9Zl21ZjuHPfep",
+  "tags": []
+}
