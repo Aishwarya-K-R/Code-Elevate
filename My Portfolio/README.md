@@ -2,7 +2,7 @@
 
 Welcome to my personal portfolio website, built with React.js and deployed on Netlify. This project showcases my skills, projects, and experiences as a developer.
 
-Live Demo: aishwaryakr-portfolio.netlify.app
+Live Demo: https://aishwaryakr-portfolio.netlify.app
 
 About This Project :
 This portfolio serves as a comprehensive introduction to my work and capabilities. It includes 5 sections :
