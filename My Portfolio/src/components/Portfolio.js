@@ -3,9 +3,16 @@ import AboutSection from "./AboutSection";
 import ExperienceSection from "./ExperienceSection";
 import ProjectsSection from "./ProjectsSection";
 import ContactsSection from "./ContactsSection";
+import { useEffect } from "react";
 
 function Portfolio() {
 
+  useEffect(() => {
+    if (window.location.hash) {
+      window.history.replaceState(null, "", window.location.pathname);
+    }
+    window.scrollTo({ top: 0, behavior: "instant" });
+  }, []);
 
   return (
     <div className="h-screen overflow-y-auto scroll-smooth">
