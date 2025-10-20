@@ -6,13 +6,14 @@ import { FiExternalLink } from "react-icons/fi";
 function ExperienceSection() {
 
     const [openIndexes, setOpenIndexes] = useState([]);
-    
+
     const toggleCard = (index) => {
-    setOpenIndexes((prev) =>
-        prev.includes(index)
-            ? prev.filter((i) => i !== index)
-            : [...prev, index]
-    )}
+        setOpenIndexes((prev) =>
+            prev.includes(index)
+                ? prev.filter((i) => i !== index)
+                : [...prev, index]
+        )
+    }
 
     const experiences = [
         {
@@ -50,80 +51,84 @@ function ExperienceSection() {
         }
     ];
 
+
     return (
         <section
             id="experience"
-            className="min-h-screen pt-16 sm:pt-20 md:pt-24 lg:pt-16 xl:pt-12 scroll-mt-16 sm:scroll-mt-20 md:scroll-mt-24 lg:scroll-mt-16 flex flex-col items-center bg-gray-50 w-full px-4 sm:px-6 lg:px-16"
+            className="min-h-screen pt-16 sm:pt-20 md:pt-24 flex flex-col items-center bg-gray-50 w-full px-4 sm:px-6 lg:px-16"
         >
             <div className="text-center px-2 sm:px-4">
                 <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-8 sm:mb-10">
                     Experience
                 </h2>
             </div>
+
             <div className="w-full max-w-2xl space-y-6">
                 {experiences.map((exp, index) => (
                     <div
                         key={index}
-                        className="bg-white shadow-md hover:shadow-lg transition rounded-2xl border border-gray-300 flex flex-col md:flex-row items-center p-6 cursor-pointer"
+                        className="bg-white shadow-md hover:shadow-lg transition rounded-2xl border border-gray-300 p-4 sm:p-6 cursor-pointer"
                         onClick={() => toggleCard(index)}
                     >
-                        <div className="flex-1 w-full">
-                            <div className="flex flex-row items-center justify-between">
-                                <h3 className="text-lg md:text-xl font-semibold text-purple-600">
-                                    {exp.title}
-                                </h3>
-                                <div className="ml-4">
-                                    {openIndexes.includes(index) ? (
-                                        <Minus className="text-purple-600 w-6 h-6" />
-                                    ) : (
-                                        <Plus className="text-purple-600 w-6 h-6" />
-                                    )}
+                        <div className="flex items-center justify-between">
+                            <h3 className="text-lg sm:text-xl font-semibold text-purple-600">
+                                {exp.title}
+                            </h3>
+                            <div className="ml-2 sm:ml-4">
+                                {openIndexes.includes(index) ? (
+                                    <Minus className="text-purple-600 w-5 h-5 sm:w-6 sm:h-6" />
+                                ) : (
+                                    <Plus className="text-purple-600 w-5 h-5 sm:w-6 sm:h-6" />
+                                )}
+                            </div>
+                        </div>
+
+                        {openIndexes.includes(index) && (
+                            <div className="mt-4 flex flex-col-reverse lg:flex-row lg:items-start lg:gap-8">
+                                <div className="flex-1">
+                                    <div className="flex flex-wrap items-center gap-2 mb-2">
+                                        <FaMapMarkerAlt className="text-gray-600" />
+                                        <span className="font-medium text-sm sm:text-base">
+                                            {exp.location}
+                                        </span>
+                                        <a
+                                            href={exp.website}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="flex items-center gap-1 text-blue-700 hover:underline text-sm sm:text-base"
+                                        >
+                                            <FiExternalLink />
+                                            <span>{exp.websiteLabel}</span>
+                                        </a>
+                                    </div>
+                                    <div className="mb-2 text-gray-500 font-medium text-sm sm:text-base">
+                                        {exp.duration}
+                                    </div>
+                                    <ul className="list-disc pl-5 space-y-1 sm:space-y-2 text-sm sm:text-base">
+                                        {exp.details.map((point, i) => (
+                                            <li key={i} className="leading-relaxed">
+                                                {point}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                    <div className="mt-2 text-gray-500 italic text-xs sm:text-sm">
+                                        Tech: {exp.tech}
+                                    </div>
+                                </div>
+                                <div className="flex items-center justify-center mb-4 lg:mb-0">
+                                    <img
+                                        src={exp.logo}
+                                        alt={`${exp.company} logo`}
+                                        className="w-24 h-24 sm:w-28 sm:h-28 lg:w-36 lg:h-36 object-contain rounded-xl border border-gray-200 bg-white"
+                                    />
                                 </div>
                             </div>
-                            {openIndexes.includes(index) && (
-                                <div className="flex flex-row items-center gap-8 mt-4">
-                                    <div className="flex-1">
-                                        <div className="flex items-center gap-4 mb-2">
-                                            <FaMapMarkerAlt className="text-gray-600" />
-                                            <span className="font-medium text-base">{exp.location}</span>
-                                            <a
-                                                href={exp.website}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="flex items-center gap-1 text-blue-700 hover:underline"
-                                            >
-                                                <FiExternalLink className="inline-block" />
-                                                <span className="text-base">{exp.websiteLabel}</span>
-                                            </a>
-                                        </div>
-                                        <div className="mb-2 text-gray-500 font-medium text-base">
-                                            {exp.duration}
-                                        </div>
-                                        <ul className="list-disc pl-6 space-y-2">
-                                            {exp.details.map((point, i) => (
-                                                <li key={i} className="leading-relaxed">{point}</li>
-                                            ))}
-                                        </ul>
-                                        <div className="mt-2 text-gray-500 italic text-sm">
-                                            Tech: {exp.tech}
-                                        </div>
-                                    </div>
-                                    <div className="flex items-center justify-center min-w-[120px]">
-                                        <img
-                                            src={exp.logo}
-                                            alt={exp.company + " logo"}
-                                            className="w-40 h-40 object-contain rounded-xl border border-gray-200 bg-white"
-                                        />
-                                    </div>
-                                </div>
-                            )}
-                        </div>
+                        )}
                     </div>
                 ))}
             </div>
         </section>
-
-    )
+    );
 }
 
-export default ExperienceSection
+export default ExperienceSection;
