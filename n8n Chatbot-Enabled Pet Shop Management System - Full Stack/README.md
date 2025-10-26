@@ -34,4 +34,7 @@ Tools and Technologies Used :
 5. IDE - Eclipse for SpringBoot, Visual Studio Code for React
 6. Database - MySQL
 
+Future enhancement: 
+Payment gateway integration (Eg: PayPal/Razorpay) for real transaction support.
+
 Note : Refer the README file inside each folder to know the steps for implementation and detailed description. 
