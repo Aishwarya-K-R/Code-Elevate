@@ -17,6 +17,7 @@ Tools and Technologies Used :
 2. Framework: React.js
 3. Styling: Tailwind CSS
 4. IDE: Visual Studio Code
+5. Containerization : Docker
    
 Steps for running locally (without Docker) :
 1. Clone or download the project from the repository.
