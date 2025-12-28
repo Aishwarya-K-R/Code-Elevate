@@ -1,0 +1,23 @@
+CREATE TABLE LeadDB.Users(
+	Id integer primary key auto_increment,
+    Email varchar(20),
+    Password varchar(512),
+    Role varchar(10)
+);
+
+CREATE TABLE LeadDB.Leads (
+    Id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    LeadType INT,
+    LeadTypeName VARCHAR(255),
+    Name VARCHAR(255) NOT NULL,
+    Email VARCHAR(255) NOT NULL,
+    PhoneNumber BIGINT NOT NULL
+);
+
+CREATE TABLE LeadDB.Associations (
+    Id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    ParentId INT NOT NULL,
+    ChildIdsJson TEXT,
+    AssociationSchemaJson TEXT,
+    CONSTRAINT FK_Association_Lead FOREIGN KEY (ParentId) REFERENCES LeadDB.Leads(Id)
+);
