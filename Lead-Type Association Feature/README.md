@@ -13,7 +13,7 @@ a. Admin-specific endpoints:
   2. PUT /api/lead: Updates existing lead details based on the provided information.
   3. DELETE /api/lead/{id}: Deletes a lead using the specified lead ID.
   4. POST /api/associations/create: Creates associations between the leads of different lead types.
-  5. /api/associations/delete: Removes existing lead-type associations.
+  5. DELETE /api/associations/delete: Removes existing lead-type associations.
 
 b. User-specific endpoints:
   1. POST /api/signup: Registers a new user into the application.
