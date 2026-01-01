@@ -1,0 +1,33 @@
+pipeline {
+  agent any
+
+  stages {
+
+    stage('Checkout Code') {
+      steps {
+        git branch: 'main',
+            url: 'https://github.com/Aishwarya-K-R/Code-Elevate.git'
+      }
+    }
+
+    stage('Build Docker Image') {
+      steps {
+        dir('My Dockerized Portfolio') {
+          sh 'docker build -t react-portfolio .'
+        }
+      }
+    }
+
+    stage('Deploy App') {
+      steps {
+        sh '''
+          docker rm -f react-portfolio-container || true
+          docker run -d \
+            --name react-portfolio-container \
+            -p 3000:3000 \
+            react-portfolio
+        '''
+      }
+    }
+  }
+}
