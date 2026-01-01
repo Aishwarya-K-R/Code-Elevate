@@ -30,7 +30,11 @@ pipeline {
             agent {
                 docker {
                     image 'mcr.microsoft.com/dotnet/sdk:7.0'
+                    args '-u root'  // run as root to avoid permission issues
                 }
+            }
+            environment {
+                DOTNET_CLI_HOME = "${WORKSPACE}"  // use workspace for dotnet caches
             }
             steps {
                 sh '''
