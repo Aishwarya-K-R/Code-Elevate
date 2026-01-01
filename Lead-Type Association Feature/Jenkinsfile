@@ -1,0 +1,91 @@
+pipeline {
+    agent any
+
+    environment {
+        APP_DIR = "/opt/dotnet-app"
+        APP_PORT = "5248"
+        APP_LOG = "/var/log/app.log"
+        MYSQL_ROOT_PASSWORD = "Ganesha-123456"  
+        MYSQL_PORT = "3306"
+    }
+
+    stages {
+
+        stage('Start MySQL') {
+            steps {
+                sh '''
+                    echo "Starting MySQL container..."
+                    docker run -d --name my-mysql \
+                        -e MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD \
+                        -p $MYSQL_PORT:3306 \
+                        mysql:8.0
+
+                    echo "Waiting for MySQL to be ready..."
+                    sleep 20  # give MySQL some time to initialize
+                '''
+            }
+        }
+
+        stage('Build & Publish') {
+            agent {
+                docker {
+                    image 'mcr.microsoft.com/dotnet/sdk:7.0'
+                }
+            }
+            steps {
+                sh '''
+                    echo "Restoring and publishing .NET app..."
+                    dotnet restore
+                    dotnet publish -c Release -o publish
+                '''
+                stash name: 'app', includes: 'publish/**'
+            }
+        }
+
+        stage('Deploy App') {
+            steps {
+                unstash 'app'
+                sh '''
+                    echo "Deploying app..."
+                    sudo mkdir -p $APP_DIR
+                    sudo cp -r publish/* $APP_DIR/
+
+                    echo "Stopping any running app..."
+                    sudo pkill -f MyApp.dll || true
+
+                    echo "Starting app in background..."
+                    nohup dotnet $APP_DIR/MyApp.dll > $APP_LOG 2>&1 &
+
+                    echo "Waiting for app to start..."
+                    sleep 5
+                '''
+            }
+        }
+
+        stage('Verify API') {
+            steps {
+                sh '''
+                    echo "Verifying app API..."
+                    curl -v http://localhost:$APP_PORT/api/lead
+                '''
+            }
+        }
+
+        stage('Verify MySQL') {
+            steps {
+                sh '''
+                    echo "Checking MySQL connection..."
+                    docker exec my-mysql mysql -u root -p"$MYSQL_ROOT_PASSWORD" -e "SHOW DATABASES;"
+                '''
+            }
+        }
+    }
+
+    post {
+        always {
+            sh 'docker stop my-mysql || true'
+            sh 'docker rm my-mysql || true'
+            echo "Pipeline finished."
+        }
+    }
+}
