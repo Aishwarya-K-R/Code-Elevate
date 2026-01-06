@@ -2,7 +2,7 @@
 
 Lead-Type Association Feature Backend developed using .NET (ASP.NET Core) and MySQL database, provides RESTful APIs to manage leads and their association with different lead types.
 The backend exposes secure and structured endpoints to perform CRUD operations and association logic.
-All APIs were tested using Postman.
+All APIs were tested using Postman.  
 
 This feature was implemented as part of my responsibilities at the company. 
 Before integrating it into the production application, I independently designed and developed this backend module to gain deeper understanding and confidence in the implementation.
