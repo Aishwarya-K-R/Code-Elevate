@@ -7,8 +7,8 @@ All APIs were tested using Postman.
 This feature was implemented as part of my responsibilities at the company. 
 Before integrating it into the production application, I independently designed and developed this backend module to gain deeper understanding and confidence in the implementation.
 
-Below is the list of REST API endpoints implemented with role-based access, tested in POSTMAN : 
-a. Admin-specific endpoints:
+Below is the list of REST API endpoints implemented with role-based access, tested in POSTMAN :  
+a. Admin-specific endpoints:  
   1. POST /api/lead: Creates and stores a new lead in the system.
   2. PUT /api/lead: Updates existing lead details based on the provided information.
   3. DELETE /api/lead/{id}: Deletes a lead using the specified lead ID.
