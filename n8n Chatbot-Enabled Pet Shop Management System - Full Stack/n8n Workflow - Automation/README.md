@@ -1,9 +1,9 @@
-************************* Pet Shop Management System - n8n Workflow *************************
+************************* **Pet Shop Management System - n8n Workflow** *************************
 
 The n8n workflow is designed to function as a chatbot for the Pet Shop Management System, automating responses and tasks for both admins and users. 
 It acts as an intelligent automation tool that handles queries, providing quick and accurate answers while streamlining routine operations.
 
-Steps for Implementation :
+**Steps for Implementation:**
 1. Clone the repository.
 2. Open the n8n instance and upload the downloaded JSON file.
 3. Create an new Groq API key and add it to the application.properties file of SprinBoot project to connect n8n with the Pet Shop backend.
