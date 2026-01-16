@@ -2,9 +2,9 @@
 
 A comprehensive full-stack application for managing a pet shop, integrating React frontend, Spring Boot backend, and n8n workflow automation to provide chatbot support and real-world operational features, with JWT-based authentication, role-based access control, and protected routing to ensure secure and authorized user interactions.
 
-**Functionalities Implemented:**
-This application provides role-specific features:
-**1. Admin has access to the following operations (Admin Dashboard):**  
+**Functionalities Implemented:**  
+This application provides role-specific features:  
+**1. Admin has access to the following operations (Admin Dashboard):**    
   a. Login  
   b. View and update profile  
   c. View users list  
@@ -12,7 +12,8 @@ This application provides role-specific features:
   e. View, update, and delete categories  
   f. View, update, and delete products  
   g. Access to ChatBot   
-  h. Logout  
+  h. Logout    
+  
 **2. User has access to the following operations (User Dashboard):**  
   a. Signup  
   b. Login  
