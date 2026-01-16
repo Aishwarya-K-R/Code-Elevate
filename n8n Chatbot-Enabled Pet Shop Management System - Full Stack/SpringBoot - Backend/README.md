@@ -2,7 +2,7 @@
 
 Pet Shop Management System Backend developed using SpringBoot and MySQL database, provides RESTful APIs for user registration, authentication, protection routing and role-based access control using JWT.
 
-Below is the list of REST API endpoints implemented in the Spring Boot backend with role-based access, tested in POSTMAN :
+Below is the list of REST API endpoints implemented in the Spring Boot backend with role-based access, tested in **POSTMAN**:  
 **a. Admin-specific endpoints:**  
 1. POST /admin/add/category : Allows admin to create a new product category.
 2. PUT /admin/update/category/{cid} : Modifies details of an existing category with the categoryId(cid).
