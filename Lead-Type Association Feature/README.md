@@ -1,4 +1,4 @@
-************************* Lead-Type Association Feature - .NET Backend *************************
+************************* **Lead-Type Association Feature - .NET Backend** *************************
 
 Built a **Lead-Type Association backend service** using **ASP.NET Core microservices**, integrating **MySQL (indexes + stored procedures)** and **Redis caching** to optimize performance, and exposing secure REST APIs for lead management and association workflows, fully **tested** via **Postman**. 
 
