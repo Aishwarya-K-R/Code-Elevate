@@ -21,3 +21,30 @@ CREATE TABLE LeadDB.Associations (
     AssociationSchemaJson TEXT,
     CONSTRAINT FK_Association_Lead FOREIGN KEY (ParentId) REFERENCES LeadDB.Leads(Id)
 );
+
+create index indx_lname on LeadDB.Leads(Name);
+create index indx_lemail on LeadDB.Leads(Email);
+
+DELIMITER $$
+CREATE PROCEDURE GetLeadsSP(
+    IN p_search VARCHAR(100),
+    IN p_sortcol VARCHAR(50),
+    IN p_sortdir VARCHAR(5),
+    IN p_pageno INT,
+    IN p_pagesize INT
+)
+BEGIN
+    SET @sql = CONCAT(	
+        'SELECT Id, LeadType, LeadTypeName, Name, Email, PhoneNumber
+         FROM Leads
+         WHERE (Name LIKE ''%', p_search, '%'' 
+            OR Email LIKE ''%', p_search, '%'') 
+         ORDER BY ', p_sortcol, ' ', p_sortdir,
+        ' LIMIT ', (p_pageno - 1) * p_pagesize, ', ', p_pagesize
+    );
+
+    PREPARE stmt FROM @sql;
+    EXECUTE stmt;
+    DEALLOCATE PREPARE stmt;
+END $$
+DELIMITER ;
